@@ -12,7 +12,6 @@ def setPayload(payload):
     global loader
     loader = payload
 
-
 createTemplate("templates/partials")
 
 def index(request):

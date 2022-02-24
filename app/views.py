@@ -15,11 +15,6 @@ def setPayload(payload):
 
 createTemplate("templates/partials")
 
-
-def sayan(data):
-    return data
-
-
 def index(request):
     if(loader):
         n = {"name": loader["identifier"]}

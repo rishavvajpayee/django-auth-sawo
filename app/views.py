@@ -1,67 +1,41 @@
-from re import S
 from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from sawo import createTemplate, getContext, verifyToken
 import json
+from django.shortcuts import redirect
 
-from .models import Config
-# from decouple import config
-# dirname = os.path.dirname(__file__)
-# filename = os.path.join(dirname, '/sample.env')
-# Create your views here.
-
-load = ''
-loaded = 0
-
+loader = ''
 
 def setPayload(payload):
-    global load
-    load = payload
+    global loader
+    loader = payload
 
-def setLoaded(reset=False):
-    global loaded
-    if reset:
-        loaded=0
-    else:
-        loaded+=1
 
 createTemplate("templates/partials")
 
+name = {"name" : "Rishav Vajpayee"}
 def index(request):
-    setLoaded()
-    setPayload(load if loaded<2 else '')
-    # print(config('api_key'))
+    if(loader):
+        return render(request, 'twitter.html', context=name)
 
     configuration = {
-                "auth_key": "02e7db68-af85-4f14-bea3-08d8fbe63c6f",
-                "identifier": "email",
-                "to": receive
+        "auth_key": "02e7db68-af85-4f14-bea3-08d8fbe63c6f",
+        "identifier": "email",
+        "to": "twitter"
     }
-    config = Config.objects.order_by('-api_key')[:1]
-    context = {"sawo": configuration}
-    # context = {"sawo":getContext(config,"login")}
+    context = {"sawo": configuration, "load": loader, "title": "Home"}
+    return render(request, "index.html", context)
 
-
-    return render(request,"index.html", context=context)
-
-
-def receive(request, method='POST'):
-      # context = {"sawo":getContext(config,"login")}
-    if request.method == 'POST':
-        payload = json.loads(request.body)["payload"]
-        setLoaded(True)
-        setPayload(payload)
-        print(payload)
-        verifyToken(payload)
-
-        if verifyToken(payload):
-            return HttpResponse("hello world")
-        else:
-            status = 404
-            print(status)
-            print("----------------")
-            response_data = {"status":status}
-            return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 def twitter(request):
-    return render(request,"twitter.html")
+    if request.method == 'POST':
+        payload = json.loads(request.body)["payload"]
+        setPayload(payload)
+        if verifyToken(payload):
+            status = 200
+            return redirect(twitter)
+        else:
+            status = 404
+            response_data = {"status": status}
+            return HttpResponse(json.dumps(response_data), content_type="application/json")
+    return render(request,"twitter.html", context = name)

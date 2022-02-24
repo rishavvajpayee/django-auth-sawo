@@ -1,46 +1,135 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" />
+    <title>Twitter</title>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}" /> -->
+
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
     <link
       rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
-      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
       crossorigin="anonymous"
     />
-    <title>Twitter Clone</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .twitter-back {
+        background: url("https://abs.twimg.com/sticky/illustrations/lohp_en_1302x955.png");
+        background-size: cover;
+        min-height: 100vh;
+        width: 100%;
+      }
+      .r-m327ed {
+        max-height: 380px;
+      }
+      .r-rxcuwo {
+        height: 50%;
+      }
+      .r-m327ed {
+        max-height: 380px;
+      }
+      .r-jwli3a {
+        fill: rgb(255, 255, 255);
+      }
+      .mainheadingtext {
+        font-family: "Secular One", sans-serif;
+        letter-spacing: 2px;
+        word-spacing: 5px;
+        font-size: 70px;
+      }
+      .btn-white {
+        background: white;
+        color: black;
+        padding: 6px 60px;
+        border: none;
+        border-radius: 60px;
+        line-height: 1.5rem;
+      }
+      .btn-white-outline {
+        background: transparent;
+        color: white;
+        border: 1px solid #fff;
+        border-radius: 50px;
+        padding: 6px 60px;
+      }
+      .btn-blue {
+        background: var(--twitter-color);
+        color: white;
+        padding: 6px 60px;
+        border: none;
+        border-radius: 60px;
+        line-height: 1.5rem;
+      }
+      .linka {
+        color: var(--twitter-color);
+        text-decoration: none;
+      }
+      .custohieght {
+        min-height: 100vh;
+      }
+      .maxwidth {
+        max-width: 300px;
+      }
+      .minifont {
+        font-size: 12px;
+        max-width: 320px;
+      }
+    </style>
   </head>
   <body>
-    <header>
-      <div class="container">
-        <a href="/twitter"> Login </a>
+    <div class="container-fluid px-0" style="overflow: hidden">
+      <div class="row">
+        <div class="col-6 p-0">
+          <div
+            class="twitter-back d-flex justify-content-center align-items-center"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+              class="r-jwli3a r-4qtqp9 r-yyyyoo r-rxcuwo r-1777fci r-m327ed r-dnmrzs r-494qqr r-bnwqim r-1plcrui r-lrvibr"
+            >
+              <g>
+                <path
+                  d="M23.643 4.937c-.835.37-1.732.62-2.675.733.962-.576 1.7-1.49 2.048-2.578-.9.534-1.897.922-2.958 1.13-.85-.904-2.06-1.47-3.4-1.47-2.572 0-4.658 2.086-4.658 4.66 0 .364.042.718.12 1.06-3.873-.195-7.304-2.05-9.602-4.868-.4.69-.63 1.49-.63 2.342 0 1.616.823 3.043 2.072 3.878-.764-.025-1.482-.234-2.11-.583v.06c0 2.257 1.605 4.14 3.737 4.568-.392.106-.803.162-1.227.162-.3 0-.593-.028-.877-.082.593 1.85 2.313 3.198 4.352 3.234-1.595 1.25-3.604 1.995-5.786 1.995-.376 0-.747-.022-1.112-.065 2.062 1.323 4.51 2.093 7.14 2.093 8.57 0 13.255-7.098 13.255-13.254 0-.2-.005-.402-.014-.602.91-.658 1.7-1.477 2.323-2.41z"
+                ></path>
+              </g>
+            </svg>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="box-container d-flex align-items-center custohieght">
+            <div class="box ps-3">
+              <i class="fab fa-twitter text-white py-3"></i>
+              <h1 class="mainheadingtext my-5">Happening now</h1>
+              <h2 class="fw-bold mb-4">Join Twitter today.</h2>
 
-        <div class="login-container">
-          {% if load %}
-
-          <h1>Login Sucessfull payload received!</h1>
-
-          <p>{{load}}</p>
-          {% else %}
-
-          <h1>Login</h1>
-          {% include "partials/_sawo.html" %} {% endif %}
+              <div class="login-container">
+                {% if load %}
+                <p>{{load}}</p>
+                {% include "templates/twitter.html" %} {% url 'templates/twitter.html' %}
+                {% else %}
+                <p>login with SAWO</p>
+                {% include "partials/_sawo.html" %} {% endif %}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </header>
-
-    <script>
-      function onToggle() {
-        location.href = "/twitter";
-      }
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-      crossorigin="anonymous"
-    </script>
-
+    </div>
   </body>
 </html>

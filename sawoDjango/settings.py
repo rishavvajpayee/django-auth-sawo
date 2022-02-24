@@ -134,3 +134,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # env = environ.Env()
 # environ.Env.read_env()
+
+LOGIN_REDIRECT_URL = "/twitter"

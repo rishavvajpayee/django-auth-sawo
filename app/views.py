@@ -10,20 +10,22 @@ def setPayload(payload):
     global loader
     loader = payload
 
-
 createTemplate("templates/partials")
+
+def get_user_name(request):
+    name = request.post("")
 
 name = {"name" : "Rishav Vajpayee"}
 def index(request):
     if(loader):
         return render(request, 'twitter.html', context=name)
 
-    configuration = {
+    configurations = {
         "auth_key": "02e7db68-af85-4f14-bea3-08d8fbe63c6f",
         "identifier": "email",
         "to": "twitter"
     }
-    context = {"sawo": configuration, "load": loader, "title": "Home"}
+    context = {"sawo": configurations, "load": loader, "title": "Home"}
     return render(request, "index.html", context)
 
 
